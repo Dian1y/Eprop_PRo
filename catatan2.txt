@@ -1,0 +1,96 @@
+@foreach($items as $item)
+    @if(empty($item->parent_id))
+        <li class="{{ $item['class'] }}">
+            <a href="{{ $item['href'] }}"
+               @if (isset($item['target'])) target="{{ $item['target'] }}" @endif
+            >
+                <i class="fa fa-fw fa-{{ $item['icon_class'] or 'circle-o' }} {{ isset($item['icon_color']) ? 'text-' . $item['icon_color'] : '' }}"></i>
+                <span>{{ $item['title'] }}</span>
+                @if($item['parent_id']== "" and $item['url']!= '')
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                @elseif ($item['parent_id']!= "")
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                @endif
+            </a>
+            @if ($item['parent_id'] == "")
+                <ul class="{{ $item['submenu_class'] }}">
+                    <?= Menu::display('user_admin_menu') ?>
+                </ul>
+            @endif
+        </li>
+    @endif
+@endforeach
+
+===============newest =============
+
+@foreach($items as $item)
+    @if(empty($item->parent_id))
+        <li class="{{ $item['class'] }}">
+            <a href="{{ $item['href'] }}"
+               @if (isset($item['target'])) target="{{ $item['target'] }}" @endif
+            >
+                <i class="fa fa-fw fa-{{ $item['icon_class'] or 'circle-o' }} {{ isset($item['icon_color']) ? 'text-' . $item['icon_color'] : '' }}"></i>
+                <span>{{ $item['title'] }}</span>
+                @if($item['parent_id']== "" and $item['url']!= '')
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                @elseif ($item['parent_id']!= "")
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                @endif
+            </a>             
+        </li>
+    @elseif ($item['parent_id']!= "")
+                <ul class="treeview">
+                    <i class="fa fa-fw fa-{{ $item['icon_class'] or 'circle-o' }} {{ isset($item['icon_color']) ? 'text-' . $item['icon_color'] : '' }}"></i>
+                    <span>{{ $item['title'] }}</span>
+                </ul>
+    @endif  
+@endforeach
+
+parameters
+
+=============== 
+<li class="{{ $item['class'] }}">
+            <a href="{{ $item['href'] }}"
+               @if (isset($item['target'])) target="{{ $item['target'] }}" @endif
+            >
+                <i class="fa fa-fw fa-{{ $item['icon_class'] or 'circle-o' }} {{ isset($item['icon_color']) ? 'text-' . $item['icon_color'] : '' }}"></i>
+                <span>{{ $item['title'] }}</span>
+                @if($item['parent_id']== "" and $item['url']!= '')
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                @elseif ($item['parent_id']!= "")
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                @endif
+            </a>             
+        </li>
+    @elseif ($item['parent_id']!= "")
+                <ul class="treeview">
+                    <i class="fa fa-fw fa-{{ $item['icon_class'] or 'circle-o' }} {{ isset($item['icon_color']) ? 'text-' . $item['icon_color'] : '' }}"></i>
+                    <span>{{ $item['title'] }}</span>
+                </ul>
+
+=============== 3
+
+@foreach($items as $item)
+    @if (($item->parameters)!="submenu" and empty($item->parent_id))   <!-- Ga punya submenu -->
+        <li class="active">
+            <a href="{{ $item['href'] }}"
+               @if (isset($item['target'])) target="{{ $item['target'] }}" @endif 
+            >
+            <i class="fa fa-fw fa-{{ $item['icon_class'] or 'circle-o' }} {{ isset($item['icon_color']) ? 'text-' . $item['icon_color'] : '' }}"></i>
+            <span>{{ $item['title'] }}</span>
+            </a>
+        </li>
+    @endif  
+@endforeach 
